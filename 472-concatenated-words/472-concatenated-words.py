@@ -12,9 +12,7 @@ class Solution:
         
         
         def isConcat(word):
-            
-            if word in hashset:
-                return true
+        
             
             if word in mem:
                 return True
@@ -28,16 +26,13 @@ class Solution:
                     mem[word] = True
                     return True
                 
-        
+            return False
+            
         for word in words:
-            
-            hashset.remove(word)
-            
+
             if isConcat(word):
                 output.append(word)
-                
-            hashset.add(word)
-       
+
         return output
     
     
