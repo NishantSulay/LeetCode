@@ -17,11 +17,20 @@ class Solution:
         total = 0
         boxTypes.sort(key=lambda x:x[1], reverse=True)
         
-        for boxType in boxTypes:      
-            for box in range(boxType[0]):
-                if truckSize == 0:
-                     break
-                truckSize -= 1
-                total += boxType[1]
+        for boxType in boxTypes:   
+        
+            if truckSize - boxType[0] < 0:
+                for box in range(boxType[0]):
+                    if truckSize == 0:
+                         break
+                    truckSize -= 1
+                    total += boxType[1]
+                
+            else:
+                    if truckSize == 0:
+                         break
+                    truckSize -= boxType[0]
+                    total += boxType[0] * boxType[1]
+            
         
         return total 
