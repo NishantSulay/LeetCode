@@ -9,23 +9,28 @@ class Solution:
         
         #bfs to invert levels , use collection.deque
         
-        queue = collections.deque()
-        node = TreeNode(0)        
-        if root:
-            queue.append(root)
+
+
+        # iterative dfs, preorder traversal
         
-        while queue:
-            node = queue.popleft()
+        stack = []
+        
+        if root:
+            stack.append(root)
+        
+        while len(stack) > 0:
+            node = stack.pop()
             
             if node.left or node.right:
-                node.left , node.right = node.right, node.left
-                if node.left:
-                    queue.append(node.left)
-                    
-                if node.right:
-                    queue.append(node.right)
+                node.left, node.right = node.right, node.left
                 
+                if node.left:
+                    stack.append(node.left)
+                if node.right:
+                    stack.append(node.right)
+                    
         return root
+            
         
             
         
