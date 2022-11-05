@@ -6,13 +6,26 @@
 #         self.right = right
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return 
         
-        root.left, root.right = root.right, root.left
-        self.invertTree(root.left)
-        self.invertTree(root.right)
+        #bfs to invert levels , use collection.deque
         
+        queue = collections.deque()
+        node = TreeNode(0)        
+        if root:
+            queue.append(root)
+        
+        while queue:
+            node = queue.popleft()
+            
+            if node.left or node.right:
+                node.left , node.right = node.right, node.left
+                if node.left:
+                    queue.append(node.left)
+                    
+                if node.right:
+                    queue.append(node.right)
+                
         return root
         
+            
         
