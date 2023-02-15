@@ -4,6 +4,10 @@ class Solution {
         Set<List<Integer>> ans = new HashSet<>();
         int length = nums.length;
         
+        if(nums == null || nums.length < 3){
+            return new ArrayList<>(ans);
+        }
+        
         Arrays.sort(nums);
         
         for (int i=0; i<length -2; i++){
@@ -20,8 +24,7 @@ class Solution {
                     right--;
                     
                 } else {
-
-                    
+             
                     ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
                     left++;
                     right--;
