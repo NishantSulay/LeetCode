@@ -20,12 +20,9 @@ class Solution {
                     right--;
                     
                 } else {
-                    List<Integer> list = new ArrayList<Integer>();
-                    list.add(nums[i]);
-                    list.add(nums[left]);
-                    list.add(nums[right]);
+
                     
-                    ans.add(list);
+                    ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
                     left++;
                     right--;
                     
