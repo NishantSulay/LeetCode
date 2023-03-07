@@ -10,27 +10,22 @@ class Solution:
         if root.left is None and root.right is None:
             return 1
         
-        res = []
+        res = 0
         
-        def dfs(node, path):
+        def dfs(node, max_curr):
+            nonlocal res
+            
             if node is None:
                 return
             
-            
-            good = True
-            for i in path:
-                if i > node.val:
-                    good = False
-
-            if good:
-                res.append(path + [node.val])
-            
-            dfs(node.left, path + [node.val])
-            dfs(node.right, path + [node.val])
-                    
-
+            if node.val >= max_curr:
+                res += 1
                 
-        dfs(root, [])
+            dfs(node.left, max(node.val, max_curr))
+            dfs(node.right, max(node.val, max_curr))
+
+        max_curr = root.val        
+        dfs(root, max_curr)
             
-        return len(res)
+        return res
         
