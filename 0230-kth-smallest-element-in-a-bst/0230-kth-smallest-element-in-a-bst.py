@@ -7,23 +7,22 @@
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         
-        #in -order traversal
-        # because BST, left child is < parent node and 
-        # right child is greater than parent node
-        # all nodes in right subtree larger than root
-        # all nodes in left subtree smallre than root
-        
         res = []
+        
         def dfs(node):
-            if not node:
+            if node is None:
                 return
             
-            dfs(node.left)
+            if node.left != None:
+                dfs(node.left)
+                
             res.append(node.val)
-            dfs(node.right)
-            
+                
+            if node.right != None:
+                dfs(node.right)
+        
+        
         dfs(root)
         
+        
         return res[k-1]
-        
-        
